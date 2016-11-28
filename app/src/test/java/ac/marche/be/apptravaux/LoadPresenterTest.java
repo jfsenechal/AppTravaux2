@@ -2,14 +2,17 @@
 package ac.marche.be.apptravaux;
 
 import android.util.Base64;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.io.IOException;
 import java.util.List;
 
+import ac.marche.be.apptravaux.lib.HttpApi;
 import ac.marche.be.apptravaux.lib.HttpClient;
 import ac.marche.be.apptravaux.lib.InsertDb;
 import ac.marche.be.apptravaux.load.LoadInteractor;
@@ -17,6 +20,7 @@ import ac.marche.be.apptravaux.load.LoadInteractorImpl;
 import ac.marche.be.apptravaux.load.LoadPresenterImpl;
 import ac.marche.be.apptravaux.load.LoadView;
 import ac.marche.be.apptravaux.model.Suivi;
+import retrofit2.Call;
 import retrofit2.Response;
 
 import static org.mockito.Matchers.anyString;
@@ -60,11 +64,19 @@ public class LoadPresenterTest {
         presenter.onResume();
 
         Response<List<Suivi>> response;
+        HttpApi httpApi =
+                HttpClient.createService(HttpApi.class, "cptflux", "425HQANhUsHqCVM5");
 
-        presenter.onLoadSuccess(response);
-        verify(view, times(1)).showMessage("Load ok");
+        Call<List<Suivi>> call = httpApi.getSuivis("suivis");
+        try {
+            response = call.execute();
+            String result = call.execute().body().toString();
+            presenter.onLoadSuccess(response);
+            verify(view, times(1)).showMessage("Load ok");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        loadInteractor.loadData("suivis");
     }
 
     @Test

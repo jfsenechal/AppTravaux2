@@ -39,6 +39,10 @@ public class LoadInteractorImpl implements LoadInteractor, Callback<List<Suivi>>
      */
     @Override
     public void onResponse(Call<List<Suivi>> call, Response<List<Suivi>> response) {
+
+        if (response.isSuccessful()) {
+            List<Suivi> suivis = response.body();
+        }
         listener.onLoadSuccess(response);
     }
 
