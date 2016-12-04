@@ -20,7 +20,7 @@ import static org.mockito.Mockito.verify;
 
 public class LoadInteractorImplTest {
 
-    private LoadInteractor.OnLoadFinishedListener mMockOnLoadFinishedListener;
+  /*  private LoadInteractor.OnLoadFinishedListener mMockOnLoadFinishedListener;
     private LoadInteractorImpl loadInteractorImpl;
     @Mock
     HttpApi httpApi;
@@ -40,6 +40,6 @@ public class LoadInteractorImplTest {
         verify(mMockOnLoadFinishedListener, times(1)).onLoadSuccess();
 
         verify(mMockOnLoadFinishedListener, never()).onLoadError();
-    }
+    }*/
 
 }

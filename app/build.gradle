@@ -32,8 +32,15 @@ dependencies {
     testCompile 'org.mockito:mockito-core:2.0.90-beta'
     compile 'com.jakewharton:butterknife:8.4.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+
+    //retrofit and okhttp
     compile 'com.google.code.gson:gson:2.6.2'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.squareup.okhttp3:okhttp:3.4.2'
     compile 'com.squareup.retrofit2:converter-moshi:2.1.0'
+
+    // Dagger dependencies
+    compile 'com.google.dagger:dagger:2.8'
+    annotationProcessor "com.google.dagger:dagger-compiler:2.8" //needed for source code generation
+    provided 'org.glassfish:javax.annotation:10.0-b28' //needed to resolve compilation errors
 }
