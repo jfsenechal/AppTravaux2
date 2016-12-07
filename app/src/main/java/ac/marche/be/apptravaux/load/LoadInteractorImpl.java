@@ -42,8 +42,8 @@ public class LoadInteractorImpl implements LoadInteractor, Callback<List<Suivi>>
 
         if (response.isSuccessful()) {
             List<Suivi> suivis = response.body();
+            listener.onLoadSuccess(response);
         }
-        listener.onLoadSuccess(response);
     }
 
     /**
